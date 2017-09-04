@@ -37,7 +37,7 @@ class Tile {
   constructor(imgNumber, id){
     this.number = imgNumber;
     this.id = id;
-    this.image = '../img/'+ imgNumber +'.svg';
+    this.image = 'img/'+ imgNumber +'.svg';
 
     var current = this;
 
