@@ -2,6 +2,8 @@ const NUMBER_OF_IMAGE_AVAILABLE = 62,
       LOCKED_ANIMATION_TIME = 1000,
       SHOW_TIME = 1000;
 
+var tiles = [];
+
 var game = {
   tilesUp: 0,
   score: 0,
@@ -11,9 +13,9 @@ var game = {
     var i = 0;
     while ( i < tilesNumber ) {
       var randomNumber = Math.floor(Math.random() * NUMBER_OF_IMAGE_AVAILABLE);
-      window['tile'+i] = new Tile( randomNumber, i);
+      tiles.push(new Tile( randomNumber, i));
       i++;
-      window['tile'+i] = new Tile( randomNumber, i);
+      tiles.push(new Tile( randomNumber, i));
       i++;
     }
   },
@@ -46,7 +48,7 @@ class Tile {
     $('<figure class="back"></figure>').appendTo('#'+ this.id +' .card');
     $('<figure class="front"></figure>').appendTo('#'+ this.id +' .card');
     $('<img src="'+ this.image +'" class="svg">').appendTo('#'+ this.id +' .card .front');
-    
+
     $('#'+ this.id).click(function(){
       if ( !$('#'+ this.id +' .card').hasClass('flipped') ){ game.tilesUp += 1; }
       $('#'+ this.id +' .card').addClass('flipped');
@@ -55,7 +57,7 @@ class Tile {
         $('.flipped').parent().each(function(){
           game.iteration++;
           var tempId = this.id;
-          if ( window['tile'+ tempId].number == temp){
+          if ( tiles[tempId].number == temp){
             $('.flipped').css('transition', LOCKED_ANIMATION_TIME +'ms ease-out').addClass('locked').removeClass('flipped');
             game.tilesUp = 0;
             game.iteration = 0;
@@ -68,7 +70,7 @@ class Tile {
             game.tilesUp = 0;
             game.iteration = 0;
           } else {
-            temp = window['tile'+ tempId].number;
+            temp = tiles[tempId].number;
           }
         });
       }
