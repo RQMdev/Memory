@@ -48,7 +48,6 @@ body
     @media screen and (max-width: $break-s)
       padding: 0.5rem 1rem
 
-
     &:hover
       background-color: $purple
 
@@ -70,6 +69,8 @@ body
   // grid-auto-columns: 1fr
   // grid-gap: 20px
 
+  .home-message
+    margin: 2rem auto 0
 
   .tile
     position: relative
@@ -131,8 +132,23 @@ body
           transform: translate(-50%, -50%)
           color: yellow
 
-    .card.flipped
+    .card.flipped, .card.waiting
       transform: rotateY(180deg)
 
     .card.locked
       transform: rotateY(1260deg)
+
+  .tile.end-game-animation
+    animation-name: endgame
+    animation-duration: 2s
+    animation-timing-function: ease
+    animation-delay: 0s
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-play-state: running
+// @keyframes endgame
+//   0%
+//     transform: rotateY(0deg) translateX(0px)
+//   100%
+//     transform: rotateY(30deg) translateX(1200px)
