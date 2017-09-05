@@ -46,6 +46,7 @@ class Tile {
     $('<figure class="back"></figure>').appendTo('#'+ this.id +' .card');
     $('<figure class="front"></figure>').appendTo('#'+ this.id +' .card');
     $('<img src="'+ this.image +'" class="svg">').appendTo('#'+ this.id +' .card .front');
+    
     $('#'+ this.id).click(function(){
       if ( !$('#'+ this.id +' .card').hasClass('flipped') ){ game.tilesUp += 1; }
       $('#'+ this.id +' .card').addClass('flipped');
