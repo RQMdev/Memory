@@ -1,4 +1,4 @@
-const NUMBER_OF_IMAGE_AVAILABLE = 62,
+const NUMBER_OF_IMAGE_AVAILABLE = 59,
       LOCKED_ANIMATION_TIME = 1000,
       SHOW_TIME = 1000;
 
@@ -10,7 +10,7 @@ var game = {
   tilesUp: 0,
   score: 0,
   iteration: 0,
-  numberOfTiles: 66,
+  numberOfTiles: 128,
 
   createGame: function(tilesNumber){
     var i = 0;
@@ -37,7 +37,7 @@ var game = {
       i++;
     }
   },
-  
+
   resetTiles: function(){
     tiles.splice(0, tiles.length);
     while (tileWrapper.firstChild){
@@ -96,19 +96,26 @@ class Tile {
           }
         });
       }
-      // var count = 0;
-      // tiles.forEach(function(tile){
-      //   if (tile.locked) {
-      //     count++;
-      //   }
-      //   if (count == tiles.length){
-      //     for (var i = 1; i <= tiles.length; i++){
-      //       setTimeout(function(){
-      //         $('#'+i).addClass('end-game-animation');
-      //       }, 100 * i);
-      //     }
-      //   }
-      // });
+
+      function doSetTimeout(i, time){
+        setTimeout(function(){
+          $('#tile-wrapper .tile:nth-child('+ i +')').css('z-index', 500 - i).addClass('end-game-animation');
+        }, time);
+      }
+
+      var count = 0;
+      tiles.forEach(function(tile){
+        if (tile.locked) {
+          count++;
+        }
+        if (count == tiles.length){
+          for (var i = 1; i <= tiles.length; i++){
+            var time = 1000 + (200 * i);
+
+            doSetTimeout(i, time);
+          }
+        }
+      });
 
     });
   }
