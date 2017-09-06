@@ -43,6 +43,18 @@ var game = {
     while (tileWrapper.firstChild){
       tileWrapper.removeChild(tileWrapper.firstChild);
     }
+  },
+  animateTiles: function(){
+    function doSetTimeout(i, time){
+      setTimeout(function(){
+        $('#tile-wrapper .tile:nth-child('+ i +')').css('z-index', 10 + i).addClass('start-game-animation');
+      }, time);
+    }
+    for (var i = 1; i <= tiles.length; i++){
+      var time = 100 * i;
+      doSetTimeout(i, time);
+    }
+
   }
 }
 
@@ -110,7 +122,7 @@ class Tile {
         }
         if (count == tiles.length){
           for (var i = 1; i <= tiles.length; i++){
-            var time = 1000 + (200 * i);
+            var time = 1000 + (100 * i);
 
             doSetTimeout(i, time);
           }
@@ -126,6 +138,7 @@ $('#easy').click(function(){
   game.numberOfTiles = 16;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
+  game.animateTiles();
 });
 
 $('#medium').click(function(){
@@ -133,6 +146,7 @@ $('#medium').click(function(){
   game.numberOfTiles = 32;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
+  game.animateTiles();
 });
 
 $('#hard').click(function(){
@@ -140,4 +154,5 @@ $('#hard').click(function(){
   game.numberOfTiles = 64;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
+  game.animateTiles();
 });
