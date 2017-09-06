@@ -12,8 +12,12 @@ $break-l: 1024px
 $break-xl: 1224px
 $break-xxl: 1824px
 
+@font-face
+  font-family: 'Righteous'
+  src: url('../fonts/Righteous/Righteous-Regular.ttf')
+
 html
-  font-family: Verdana, sans-serif
+  font-family: 'Righteous', sans-serif
   font-size: 16px
   margin: 0
   padding: 0
@@ -25,13 +29,44 @@ body
   overflow-y: scroll
   margin: 0
   padding: 0
-  background-color: white
+  background-color: #eee
+
+  #win-message
+    position: fixed
+    font-size: 5rem
+    top: 30%
+    left: 50%
+    text-align: center
+    animation-name: win
+    animation-duration: 2s
+    animation-timing-function: ease
+    animation-delay: 0s
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-play-state: running
+
+  #actions-message
+    position: fixed
+    fon-size: 3rem
+    top: 50%
+    left: 42%
+    text-align: center
+    animation-name: startgame
+    animation-duration: 2s
+    animation-timing-function: ease
+    animation-delay: 0s
+    animation-iteration-count: 1
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-play-state: running
 
 #navbar
   position: fixed
   top: 0
   width: 100vw
   height: 40px
+  line-height: 20px
   display: flex
   justify-content: center
   background-color: $black
@@ -43,13 +78,14 @@ body
     padding: 0.5rem 4rem
     text-transform: uppercase
     cursor: default
-    background-color: black
-    transition: .3s
+    background-color: transparent
+    transition: .15s
     @media screen and (max-width: $break-s)
       padding: 0.5rem 1rem
 
     &:hover
-      background-color: $purple
+      // background-color: $purple
+      transform: scale(1.5)
 
 #navbar-placeholder
   width: calc(100vw-17px)
@@ -65,7 +101,8 @@ body
   perspective: 1000px
 
   .home-message
-    margin: 2rem auto 0
+    margin: 2rem auto
+    text-align: center
 
   .tile
     position: relative
@@ -75,6 +112,7 @@ body
     margin-bottom: 10px
     margin-left: 10px
     opacity: 0
+    user-select: none
     @media screen and (max-width: $break-xxl)
       min-width: 8vw
       min-height: 8vw
@@ -99,7 +137,7 @@ body
       width: 100%
       height: 100%
       transform-style: preserve-3d
-      transition: transform .2s
+      transition: transform .15s
 
       figure
         position: absolute
@@ -111,14 +149,14 @@ body
 
       .back
         background-color: $black
-        border: 1px solid $black
         background-image: $linear-gradient
+        border-radius: 15px
 
       .front
-        background-color: white
+        background-color: transparent
         transform: rotateY(180deg)
         background-size: cover
-        border: 1px solid $black
+        border-radius: 15px
 
         img
           position: absolute
@@ -164,7 +202,17 @@ body
 @keyframes startgame
   0%
     transform: scale(3) translateX(-1000px) rotateY(-45deg)
-    opacity: 1
   100%
     transform: scale(1) translateX(0px) rotateY(0deg)
-    opacity: 1
+
+@keyframes win
+  0%
+    transform: translate(-2000%, -50%)
+  100%
+    transform: translate(-50%, -50%)
+
+@keyframes actions
+  0%
+    transform: translate(2000%, -50%)
+  100%
+    transform: translate(-50%, -50%)

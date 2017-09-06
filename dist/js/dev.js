@@ -43,12 +43,17 @@ var game = {
     while (tileWrapper.firstChild){
       tileWrapper.removeChild(tileWrapper.firstChild);
     }
+    $('#win-message').remove();
+    $('#actions-message').remove();
   },
   animateTiles: function(){
     function doSetTimeout(i, time){
       setTimeout(function(){
-        $('#tile-wrapper .tile:nth-child('+ i +')').css('z-index', 10 + i).addClass('start-game-animation');
+        $('#tile-wrapper .tile:nth-child('+ i +')').css({'z-index': 10 + i, 'opacity': '1'}).addClass('start-game-animation');
       }, time);
+      setTimeout(function(){
+        $('#tile-wrapper .tile:nth-child('+ i +')').removeClass('start-game-animation');
+      }, time + 2000);
     }
     for (var i = 1; i <= tiles.length; i++){
       var time = 100 * i;
@@ -126,6 +131,9 @@ class Tile {
 
             doSetTimeout(i, time);
           }
+          setTimeout(function(){
+            $('<h1 id="win-message">You Win!</h1><h1 id="actions-message">with '+ game.click +' actions</h1>').appendTo('body');
+          }, 2000 + (100 * tiles.length));
         }
       });
 
