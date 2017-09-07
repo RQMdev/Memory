@@ -144,6 +144,7 @@ class Tile {
 $('#easy').click(function(){
   game.resetTiles();
   game.numberOfTiles = 16;
+  game.click = 0;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
   game.animateTiles();
@@ -152,6 +153,7 @@ $('#easy').click(function(){
 $('#medium').click(function(){
   game.resetTiles();
   game.numberOfTiles = 32;
+  game.click = 0;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
   game.animateTiles();
@@ -160,6 +162,7 @@ $('#medium').click(function(){
 $('#hard').click(function(){
   game.resetTiles();
   game.numberOfTiles = 64;
+  game.click = 0;
   game.createGame(game.numberOfTiles);
   game.shuffleTiles(game.numberOfTiles);
   game.animateTiles();
